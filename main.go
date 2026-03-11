@@ -91,7 +91,7 @@ func createTodo(w http.ResponseWriter, r *http.Request) {
 	//TODO: Add Validation logic here
 
 	Todos = append(Todos, m)
-	w.WriteHeader(http.StatusCreated)
 	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
 	w.Write(body)
 }
