@@ -70,6 +70,10 @@ func getTodoById(w http.ResponseWriter, r *http.Request) {
 }
 
 func createTodo(w http.ResponseWriter, r *http.Request) {
+	if r.Header.Get("Content-Type") != "application/json" {
+		writeError(w, http.StatusUnsupportedMediaType, "Unsupported Content Type", "Content-Type must be application/json")
+	}
+
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		log.Println(err)
